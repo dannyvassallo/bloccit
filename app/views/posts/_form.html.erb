@@ -1,5 +1,17 @@
 <%= simple_form_for [topic, post] do |f| %>
   <%= f.input :title, label: 'Title', placeholder: "Enter post title" %>
+  <% if current_user.avatar? %>
+    <div class="form-group">
+      <label>Current Image</label>
+      <%= image_tag( post.image.url ) %>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <br/>
   <%= f.input :body, label: 'Body', placeholder: "Enter post body", :input_html => { 'rows' => 8 }  %>
   <%= f.submit 'Save' , class: 'btn btn-success' %>
 <% end %>
