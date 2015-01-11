@@ -1,8 +1,9 @@
 <%= simple_form_for [topic, post] do |f| %>
   <%= f.input :title, label: 'Title', placeholder: "Enter post title" %>
-  <% if current_user.avatar? %>
+  <% if post.image? %>
     <div class="form-group">
       <label>Current Image</label>
+      <br>
       <%= image_tag( post.image.url ) %>
     </div>
   <% end %>
