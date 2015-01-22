@@ -1,4 +1,4 @@
 <%= simple_form_for [@topic,@post,@post.comments.new] do |f| %>
-  <%= f.input :body, label: 'Body', placeholder: "Post a Comment", :input_html => { 'rows' => 8 }  %>
+  <%= f.input :body, label: 'Leave a comment', placeholder: "Enter your comment here."%>
   <%= f.submit 'Submit' , class: 'btn btn-success' %>
 <% end %>

@@ -3,9 +3,9 @@
 <%= image_tag(@post.image.url) if @post.image? %>
 <div class="row">
   <div class="col-md-8">
-      <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
-    <p><%= markdown @post.body %></p>
+    <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
     <small>submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %></small>
+    <p><%= markdown @post.body %></p>
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
     <% end %>
@@ -13,6 +13,10 @@
 </div>
 <br>
 <div class="row">
+  <h1>Comments</h1>
+  <% if user_signed_in? %>
+    <%= render partial: 'comments/form' %>
+  <% end %>
   <%= render partial: 'comments/comment' %>
 </div>
-<%= render partial: 'comments/form' %> 
+
