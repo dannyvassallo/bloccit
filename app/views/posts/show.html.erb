@@ -13,9 +13,13 @@
 </div>
 <br>
 <div class="row">
-  <h1>Comments</h1>
+  <div class="col-lg-12">
+    <h1>Comments</h1>
+  </div>
   <% if user_signed_in? %>
-    <%= render partial: 'comments/form' %>
+    <div class="col-lg-12">
+      <%= render partial: 'comments/form' %>
+    </div>
   <% end %>
   <%= render partial: 'comments/comment' %>
 </div>
