@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 
+group :test do
+  gem 'rspec-rails', '~> 3.1.0'
+end
+
 group :production do 
   gem 'pg'
   gem 'rails_12factor'
