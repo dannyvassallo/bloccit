@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user.present? && (record.user == user || user.admin?)
+    user.present? && can_moderate?
   end
 
   def edit?
@@ -50,5 +50,12 @@ class ApplicationPolicy
       scope
     end
   end
+
+  private
+
+  def can_moderate?
+    (record.user == user || user.admin? || user.moderator?)
+  end
+  
 end
 
