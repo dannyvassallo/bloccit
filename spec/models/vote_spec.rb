@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Vote do
   
-  descibe "validations" do
+  describe "validations" do
     describe "value validation" do
       it "only allows -1 or 1 as values" do
         up_vote = Vote.new(value: 1)
