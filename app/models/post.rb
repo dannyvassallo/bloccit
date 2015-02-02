@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   mount_uploader :image, ImageUploader
+  after_create :create_vote
 
   def up_votes
     votes.where(value: 1).count
@@ -17,10 +18,23 @@ class Post < ActiveRecord::Base
     votes.sum(:value)
   end
 
-  default_scope { order('created_at DESC') }
+  def update_rank
+    age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24)
+    new_rank = points + age_in_days
+
+    update_attribute(:rank, new_rank)
+  end
+
+  default_scope { order('rank DESC') }
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
-  # validates :topic, presence: true
-  # validates :user, presence: true
+  validates :topic, presence: true
+  validates :user, presence: true
+
+  private
+
+  def create_vote
+    votes.create(value: 1)
+  end
 end
