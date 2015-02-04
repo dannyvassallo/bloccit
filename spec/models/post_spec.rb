@@ -4,8 +4,6 @@ describe Post do
   describe "vote methods" do
 
     before do
-      user = User.create
-      topic = Topic.create
       @post = Post.create(title: 'post title', body: 'post bodies must be pretty long.')
       3.times { @post.votes.create(value: 1) }
       2.times { @post.votes.create(value: -1) }
