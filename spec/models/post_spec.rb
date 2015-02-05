@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe Post do
+
+  include TestFactories
+
   describe "vote methods" do
 
     before do
@@ -28,17 +31,13 @@ describe Post do
     end
   end
 
-  def associated_post
-    user = authenticated_user
-    topic = Topic.create(name: 'Topic name')
-    Post.create(title: 'post title', body: 'post bodies must be pretty long.', topic: topic, user: user)
+  describe '#create_vote' do
+    it "generates an up-vote when explicitly called" do
+      post = associated_post
+      expect( post.up_votes ).to eq(0)
+      post.create_vote
+      expect( post.up_votes ).to eq(1)
+    end
   end
 
-  def authenticated_user
-    user = User.new(email: "email#{rand}@fake.com", password: 'password')
-    user.skip_confirmation!
-    user.save
-    user
-  end
-  
 end

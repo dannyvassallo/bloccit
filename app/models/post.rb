@@ -4,7 +4,6 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
   mount_uploader :image, ImageUploader
-  after_create :create_vote
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
   validates :topic, presence: true
@@ -30,8 +29,6 @@ class Post < ActiveRecord::Base
   end
 
   default_scope { order('rank DESC') }
-
-  private
 
   def create_vote
     user.votes.create(value: 1, post: self)
