@@ -8,7 +8,7 @@ group :test do
   gem 'capybara'
 end
 
-group :production do 
+group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
@@ -38,3 +38,4 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'will_paginate', '~> 3.0.5'
+gem 'newrelic_rpm'
