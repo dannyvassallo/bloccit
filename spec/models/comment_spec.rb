@@ -9,6 +9,7 @@ describe Comment do
     before do
       @post = associated_post
       @user = authenticated_user
+      
       @comment = Comment.new(body: 'My comment', post: @post, user_id: 10000)
     end
 
@@ -42,8 +43,9 @@ describe Comment do
 
         expect( FavoriteMailer )
           .not_to receive(:new_comment)
-
-        @comment.save
+        expect(@comment.persisted?).to eq(false)
+        # @comment.send_favorite_emails
+        @comment.save!
       end
     end
   end
