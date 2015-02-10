@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   belongs_to :user
   belongs_to :topic
+  scope :visible_to, ->(user) { user ? all : joins(:topic).where('topics.public' => true) }
   mount_uploader :image, ImageUploader
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
