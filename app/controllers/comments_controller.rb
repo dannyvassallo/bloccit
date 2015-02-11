@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 
     respond_with(@comment) do |format|
       format.html { redirect_to [@post.topic, @post] }
-  end
+    end
 
   private
 
