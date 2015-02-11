@@ -1,7 +1,11 @@
 module VotesHelper
 
   def vote_link_classes(post, direction)
-    "glyphicon glyphicon-chevron-#{direction} && current_user.voted(post).#{direction}_vote?) ? 'voted' : '' }"
+    classes = "glyphicon glyphicon-chevron-#{direction}"
+    if current_user.voted(post).try(:"#{direction}_vote?")
+      classes << " voted"
+    end
+    classes
   end
 
 end
