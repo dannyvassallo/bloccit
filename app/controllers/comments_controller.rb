@@ -31,6 +31,8 @@ class CommentsController < ApplicationController
       format.html { redirect_to [@post.topic, @post] }
     end
 
+  end
+  
   private
 
   def comment_params
