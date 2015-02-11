@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  repond_to :html, :js
+  respond_to :html, :js
 
   def create
     @post = Post.find(params[:post_id])
