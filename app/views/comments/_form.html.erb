@@ -1,4 +1,4 @@
-<%= simple_form_for [@post, Comment.new] do |f| %>
+<%= simple_form_for [@post, @post.comments.build], remote: true do |f| %>
   <%= f.input :body, label: 'Leave a comment', placeholder: "Enter your comment here."%>
   <%= f.submit 'Submit' , class: 'btn btn-success' %>
 <% end %>

@@ -28,8 +28,12 @@
     <h1>Comments</h1>
   </div>
 </div>
-<% if user_signed_in? %>
-    <%= render partial: 'comments/form' %>
-<% end %>
-<%= render partial: 'comments/comment'%>
+<div class="new-comment">
+  <% if user_signed_in? %>
+      <%= render partial: 'comments/form' %>
+  <% end %>
+</div>
+<div class="js-comments">
+  <%= render partial: 'comments/comment'%>
+</div>
 
