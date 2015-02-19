@@ -38,9 +38,10 @@ class Post < ActiveRecord::Base
 
   def save_with_initial_vote
     ActiveRecord::Base.transaction do
-      save
+      save!
       create_vote if self.votes.count.zero?
     end
+  rescue ActiveRecord::RecordInvalid
   end
 
 end
